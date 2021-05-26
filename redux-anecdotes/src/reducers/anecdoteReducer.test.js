@@ -1,5 +1,5 @@
 import anecdoteReducer from './anecdoteReducer';
-import { initialState } from './anecdoteReducer'
+import { initialState, voteAnecdote, addAnecdote } from './anecdoteReducer'
 import deepFreeze from 'deep-freeze'
 
 describe('anecdoteReducer',() => {
@@ -15,12 +15,22 @@ describe('anecdoteReducer',() => {
     test('an anecdote can be voted', () => {
         const state = initialState;
         const noteToVote = initialState[Math.floor(Math.random() * initialState.length)]
-        const action = {
-            type: 'VOTE',
-            data: { id : noteToVote.id }
-        }
+        
+        const action = voteAnecdote(noteToVote.id) //action creator
+
         deepFreeze(state)
         const newState = anecdoteReducer(state,action)
         expect(newState).toContainEqual({...noteToVote,votes: 1})
+    })
+    test('a new anecdote can be added',() => {
+        const state = initialState;
+        const newAnecdote = "React is the best Library"
+        
+        const action = addAnecdote(newAnecdote)
+        
+        deepFreeze(state)
+        const newState = anecdoteReducer(state,action)
+        expect(newState).toHaveLength(state.length + 1)
+        expect(newState).toContainEqual(action.data)
     })
 })
