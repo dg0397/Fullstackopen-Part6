@@ -31,9 +31,12 @@ export const addAnecdote = (content) => {
   }
 }
 
-export const initialState = anecdotesAtStart.map(asObject)
+export const initialState = {
+  anecdotes : anecdotesAtStart.map(asObject),
+  message : "React-Redux"
+}
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState.anecdotes, action) => {
   console.log('state now: ', state)
   console.log('action', action)
   switch(action.type) {

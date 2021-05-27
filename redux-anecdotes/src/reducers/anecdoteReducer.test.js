@@ -4,7 +4,7 @@ import deepFreeze from 'deep-freeze'
 
 describe('anecdoteReducer',() => {
     test('should return a proper initial state when called with undefined state', () => {
-        const state = initialState
+        const state = initialState.anecdotes
         const action = {
           type: 'DO_NOTHING'
         }
@@ -13,8 +13,8 @@ describe('anecdoteReducer',() => {
         expect(newState).toEqual(state)
     })
     test('an anecdote can be voted', () => {
-        const state = initialState;
-        const noteToVote = initialState[Math.floor(Math.random() * initialState.length)]
+        const state = initialState.anecdotes;
+        const noteToVote = initialState.anecdotes[Math.floor(Math.random() * initialState.anecdotes.length)]
         
         const action = voteAnecdote(noteToVote.id) //action creator
 
@@ -23,7 +23,7 @@ describe('anecdoteReducer',() => {
         expect(newState).toContainEqual({...noteToVote,votes: 1})
     })
     test('a new anecdote can be added',() => {
-        const state = initialState;
+        const state = initialState.anecdotes;
         const newAnecdote = "React is the best Library"
         
         const action = addAnecdote(newAnecdote)
