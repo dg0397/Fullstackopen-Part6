@@ -4,7 +4,7 @@ import deepFreeze from 'deep-freeze'
 
 describe('anecdoteReducer',() => {
     test('should return a proper initial state when called with undefined state', () => {
-        const state = initialState.anecdotes
+        const state = []
         const action = {
           type: 'DO_NOTHING'
         }
@@ -32,5 +32,19 @@ describe('anecdoteReducer',() => {
         const newState = anecdoteReducer(state,action)
         expect(newState).toHaveLength(state.length + 1)
         expect(newState).toContainEqual(action.data)
+    })
+    test('a group of anecdotes can be added at the same time',() => {
+        const state = []
+        const { anecdotes } = initialState
+
+        const action = {
+            type : 'INIT_ANECDOTES',
+            data : anecdotes
+        }
+
+        deepFreeze(state)
+        const newState = anecdoteReducer(state,action)
+        expect(newState).toHaveLength(anecdotes.length)
+        expect(newState).toEqual(anecdotes)
     })
 })

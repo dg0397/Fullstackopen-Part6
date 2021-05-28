@@ -31,13 +31,20 @@ export const addAnecdote = (content) => {
   }
 }
 
+export const initializeAnecdotes = (anecdotes) => {
+  return {
+    type : "INIT_ANECDOTES",
+    data: anecdotes
+  }
+}
+
 export const initialState = {
   anecdotes : anecdotesAtStart.map(asObject),
   message : "",
   filter : ""
 }
 
-const reducer = (state = initialState.anecdotes, action) => {
+const reducer = (state = [] , action) => {
   console.log('state now: ', state)
   console.log('action', action)
   switch(action.type) {
@@ -50,6 +57,9 @@ const reducer = (state = initialState.anecdotes, action) => {
     }
     case 'ADD':{
       return [...state, action.data]
+    }
+    case 'INIT_ANECDOTES':{
+      return [...action.data]
     }
     default:
       return state
