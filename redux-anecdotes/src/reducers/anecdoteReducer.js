@@ -33,7 +33,7 @@ export const addAnecdote = (content) => {
 
 export const initialState = {
   anecdotes : anecdotesAtStart.map(asObject),
-  message : "React-Redux"
+  message : ""
 }
 
 const reducer = (state = initialState.anecdotes, action) => {
