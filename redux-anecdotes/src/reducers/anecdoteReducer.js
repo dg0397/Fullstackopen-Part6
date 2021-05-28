@@ -33,7 +33,8 @@ export const addAnecdote = (content) => {
 
 export const initialState = {
   anecdotes : anecdotesAtStart.map(asObject),
-  message : ""
+  message : "",
+  filter : ""
 }
 
 const reducer = (state = initialState.anecdotes, action) => {
