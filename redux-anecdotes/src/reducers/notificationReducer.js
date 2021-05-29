@@ -9,11 +9,19 @@ const notificationReducer = (state = initialState.message, action) => {
     }
 }
 
-export const setMessage = message => {
-    return {
+export const setMessage = (message,time) => {
+  return dispatch => {
+    dispatch({
+      type : 'SET_MESSAGE',
+      message
+    })
+    setTimeout(()=>{
+      dispatch({
         type : 'SET_MESSAGE',
-        message
-    }
+        message: ""
+      })
+    },time*1000)
+  }
 }
 
 export default notificationReducer

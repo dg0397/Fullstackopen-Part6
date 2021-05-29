@@ -11,10 +11,7 @@ const AnecdoteForm = (props) => {
         const message = `You added a new Anecdote: ${content}`
         e.target.anecdote.value = ""
         dispatch(addAnecdote(content))
-        dispatch(setMessage(message))
-        setTimeout(()=>{
-            dispatch(setMessage(""))
-        },5000)
+        dispatch(setMessage(message,5))
     }
 
     return (
