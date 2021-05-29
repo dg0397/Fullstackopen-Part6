@@ -9,9 +9,9 @@ const AnecdoteList = () => {
     })
     const dispatch = useDispatch()
 
-    const vote = ({id,content}) => {
-      const message = `You voted "${content}"`
-      dispatch(voteAnecdote(id))
+    const vote = (anecdote) => {
+      const message = `You voted "${anecdote.content}"`
+      dispatch(voteAnecdote(anecdote))
       dispatch(setMessage(message))
       setTimeout(()=>{
         dispatch(setMessage(""))
