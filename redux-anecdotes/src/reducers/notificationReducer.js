@@ -1,6 +1,4 @@
-import { initialState } from "./anecdoteReducer"
-
-const notificationReducer = (state = initialState.message, action) => {
+const notificationReducer = (state = '', action) => {
     switch (action.type) {
       case 'SET_MESSAGE':
         return action.message
