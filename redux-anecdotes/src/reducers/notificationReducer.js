@@ -8,17 +8,20 @@ const notificationReducer = (state = '', action) => {
 }
 
 export const setMessage = (message,time) => {
-  return dispatch => {
+  return function(dispatch){
     dispatch({
       type : 'SET_MESSAGE',
       message
     })
-    setTimeout(()=>{
+    let t = window.setTimeout(()=>{
       dispatch({
         type : 'SET_MESSAGE',
         message: ""
       })
     },time*1000)
+    for (let i = 0 ; i < t ; i++) {
+      clearTimeout(i); 
+    }
   }
 }
 
